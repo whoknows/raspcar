@@ -1,4 +1,4 @@
-raspcar
+RaspCar
 =======
 
-RaspCar
+Raspberry Pi powered car computer.

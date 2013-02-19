@@ -8,14 +8,14 @@ function obdCommunicator() {
 	//this.
 
 	// Déclaration des fonctions
-	if ( typeOf obdCommunicator.initialized == []._ ) {
+	if ( typeOf obdCommunicator.initialized == "undefined" ) {
 
 		/*
 		 * Connects to the ELM equipement
 		 * @param interface : interface to connect to
 		 * @return bool : true success, false failure
 		 */
-		obdCommunicator.prototype.Connect(Interface) = function() {
+		obdCommunicator.prototype.Connect() = function(Interface) {
 			// connection to the elm327
 			util.puts("/dev/" + Interface);
 			return true;
