@@ -11,8 +11,8 @@ textarea {
 }
 
 body {
-	background-color: #f4f4f4;
-	color: #5a5656;
+    background-color: #f4f4f4;
+    color: #5a5656;
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	line-height: 1.5em;
@@ -103,6 +103,12 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.night-mode {
+    background-color: #5a5656!important;
+    border-color:#f4f4f4!important;
+    color: #f4f4f4!important;
+}
+
 #body-container {
 	border: 1px solid #CCC;
 	height: 480px;
@@ -116,17 +122,16 @@ textarea {
 	padding: 0 5px;
 }
 
-#home, #settings {
-	display: inline-block;
+.menu-items {
 	cursor: pointer;
 	color: #AAA;
 	font-size: 20px;
 	margin: 0 5px;
-	vertical-align: middle;
+	vertical-align: middle!important;
 	width:20px;
 }
 
-#home:hover, #settings:hover {
+.menu-items:hover {
 	color: #5a5656;
 }
 
@@ -152,8 +157,8 @@ textarea {
 }
 
 .app2border {
-	border-left: 12px solid #5a5656;
-	/*border-left: 2px solid #CCC;*/
+	border-left: 12px solid;
+    border-color: #5a5656;
 }
 
 .smallApp {
@@ -166,7 +171,6 @@ textarea {
 
 .normalApp {
 	width: 394px;
-	/*width: 399px;*/
 }
 
 .fullscreenApp {
@@ -175,10 +179,7 @@ textarea {
 
 .resize-container {
 	color:#CCC;
-	display:inline-block;
-	position:relative;
-	top:0;
-	left:322px;
+    float:right;
 	text-align: right;
 	width:70px;
 }

@@ -12,13 +12,14 @@
 		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		<script src="js/vendor/prefixfree.min.js"></script>
 	</head>
-	<body>
+	<body onload="loadHome()" class="day-mode">
 		<br /><!-- a enlever en "prod" -->
 		<div id="body-container">
 			<div id="menu-top">
-				<span class="icon-cog" id="settings"></span>
-				<span class="icon-home" id="home"></span>
+				<span class="icon-cog menu-items" onclick="loadSettings()"></span>
+				<span class="icon-dashboard menu-items" onclick="loadHome()"></span>
 				<span id="clock"></span> <!-- Setting - show date / show time - 24h/12h -->
+                <span class="icon-adjust menu-items" onclick="toggleDayNight()"></span>
 			</div>
 			<div id="main-ui">
 				<div id="app1" class="normalApp mainApp">
@@ -35,8 +36,8 @@
 				</div>
 			</div>
 		</div>
-        
-        <div id="divdemerde"></div>
+
+        <div id="divdemerde" class="hidden"></div>
 
 		<script src="js/vendor/jquery-1.9.1.js"></script>
 		<script src="js/vendor/jquery-ui-1.10.1.min.js"></script>

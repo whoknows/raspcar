@@ -2,18 +2,6 @@
 var odb = require("odb2.js");*/
 
 $(document).ready(function(){
-	loadTemplate('gauge.html', '#app1', function(){gaugeInit(null);});
-
-    $("#settings").click(function(){
-        loadTemplate('settings.html', '#app1', function(){ 
-            $('#app1').children('.resize-container').children('.icon-fullscreen').click();
-        });
-    });
-    
-    $("#home").click(function(){
-        window.location.reload();
-    });
-
 	$(".app-fullscreen").click(function(){
 		var container = $(this).parent();
         var appX = container.data('parent-app');
@@ -24,7 +12,6 @@ $(document).ready(function(){
 
 		$('#app2').toggleClass('app2border');
 		container.children(".app-toggle").toggleClass('hidden');
-        container.css('left', $('#'+appX).width()-70+'px');
 	});
 
 	$(".app-toggle").click(function(){
@@ -38,8 +25,6 @@ $(document).ready(function(){
 
 		$('#'+appX).width()!=$('#'+appY).width()&&$(this).hide();
 		$(this).parent().children(".app-toggle[data-action="+(action=='bigger'?'smaller':'bigger')+"]").show();
-		$(this).parent().css('left',$('#'+appX).width()-70+'px');
-        $('#'+appY).children('.resize-container').css('left', $('#'+appY).width()-70+'px');
 	});
 
 	//Horloge
@@ -47,12 +32,36 @@ $(document).ready(function(){
 	setInterval(function(){myTimer()},1000);
 });
 
+function loadHome() {
+    $('#app1').removeClass('fullscreenApp hidden');
+    $('#app2').removeClass('fullscreenApp hidden').addClass('app2border');
+    loadTemplate('gauge.html', '#app1', function(){gaugeInit(null);});
+    //loadTemplate('gauge.html', '#app2', function(){gaugeInit(null);});
+}
+
+function loadSettings() {
+    if(!$('#app1').hasClass('fullscreenApp')){
+        $('#app1').children('.resize-container').children('.icon-fullscreen').click();
+    }
+    loadTemplate('settings.html', '#app1', null);
+}
+
 function loadTemplate(template, receiver, callback) {
+    $(receiver).children('.template-container').remove();
+
     $('#divdemerde').load('template/'+template, null, function(){
         $(receiver).append($('#divdemerde').html());
         $('#divdemerde').empty();
-		callback();
+
+        if(callback){
+            callback();
+        }
 	});
+}
+
+function toggleDayNight() {
+    $('body').toggleClass('night-mode');
+    $('.app2border').toggleClass('night-mode');
 }
 
 function myTimer() {
