@@ -7,7 +7,6 @@ $(document).ready(function(){
 		$('#'+appX).toggleClass('fullscreenApp');
 		$('#'+appY).toggleClass('hidden').removeClass('fullscreenApp');
 
-		$('#app2').toggleClass('app2border');
 		container.children(".app-toggle").toggleClass('hidden');
 	});
 
@@ -31,7 +30,7 @@ $(document).ready(function(){
 
 function loadHome() {
     $('#app1').removeClass('fullscreenApp hidden');
-    $('#app2').removeClass('fullscreenApp hidden').addClass('app2border');
+    $('#app2').removeClass('fullscreenApp hidden');
     loadTemplate('gauge.html', '#app1', function(){gaugeInit(null);});
     //loadTemplate('gauge.html', '#app2', function(){gaugeInit(null);});
 }
