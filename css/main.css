@@ -170,7 +170,7 @@ textarea {
 }
 
 .fullscreenApp {
-	width: 798px;
+	width: 798px!important;
 }
 
 .resize-container {

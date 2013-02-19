@@ -2,23 +2,29 @@
 var odb = require("odb2.js");*/
 
 $(document).ready(function(){
-	$('#app1').load('template/gauge.html', null, function(){
-		//var obd2 = new obdCommunicator();
-		//gaugeInit(obd2);
-		gaugeInit(null);
-	});
+	loadTemplate('gauge.html', '#app1', function(){gaugeInit(null);});
+
+    $("#settings").click(function(){
+        loadTemplate('settings.html', '#app1', function(){ 
+            $('#app1').children('.resize-container').children('.icon-fullscreen').click();
+        });
+    });
+    
+    $("#home").click(function(){
+        window.location.reload();
+    });
 
 	$(".app-fullscreen").click(function(){
-		var appX = $(this).parent().data('parent-app');
-		var appY = appX == 'app2' ? 'app1' : 'app2';
 		var container = $(this).parent();
+        var appX = container.data('parent-app');
+		var appY = appX == 'app2' ? 'app1' : 'app2';
 
 		$('#'+appX).toggleClass('fullscreenApp');
 		$('#'+appY).toggleClass('hidden').removeClass('fullscreenApp');
 
 		$('#app2').toggleClass('app2border');
 		container.children(".app-toggle").toggleClass('hidden');
-		container.css('left', $('#'+appX).width()-70+'px');
+        container.css('left', $('#'+appX).width()-70+'px');
 	});
 
 	$(".app-toggle").click(function(){
@@ -33,6 +39,7 @@ $(document).ready(function(){
 		$('#'+appX).width()!=$('#'+appY).width()&&$(this).hide();
 		$(this).parent().children(".app-toggle[data-action="+(action=='bigger'?'smaller':'bigger')+"]").show();
 		$(this).parent().css('left',$('#'+appX).width()-70+'px');
+        $('#'+appY).children('.resize-container').css('left', $('#'+appY).width()-70+'px');
 	});
 
 	//Horloge
@@ -40,8 +47,16 @@ $(document).ready(function(){
 	setInterval(function(){myTimer()},1000);
 });
 
+function loadTemplate(template, receiver, callback) {
+    $('#divdemerde').load('template/'+template, null, function(){
+        $(receiver).append($('#divdemerde').html());
+        $('#divdemerde').empty();
+		callback();
+	});
+}
+
 function myTimer() {
-	d = new Date;
+	var d = new Date();
 	document.getElementById("clock").innerHTML = d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '')+d.getMinutes();
 }
 
