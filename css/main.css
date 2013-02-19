@@ -12,7 +12,7 @@ textarea {
 
 body {
     background-color: #f4f4f4;
-    color: #5a5656;
+    color: #FFF;
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	line-height: 1.5em;
@@ -110,78 +110,103 @@ textarea {
 }
 
 #body-container {
-	border: 1px solid #CCC;
 	height: 480px;
 	margin: auto;
 	width: 800px;
 }
 
 #menu-top {
-	border-bottom: 1px solid #DDD;
-	height: 30px;
-	padding: 0 5px;
+    background-color: #232323;
+	height: 50px;
+}
+#menu-top .menu-left, #menu-top .menu-right{
+    display: inline-block;
+    width: 340px;
 }
 
-.menu-items {
+#menu-top .menu-left {
+    padding-left:10px;
+}
+
+#menu-top .menu-right{
+    padding-right:10px;
+    text-align: right;
+}
+
+#menu-top .menu-middle{
+    display: inline-block;
+    text-align:center;
+    width: 100px;
+}
+
+#menu-top .menu-items{
 	cursor: pointer;
-	color: #AAA;
-	font-size: 20px;
-	margin: 0 5px;
-	vertical-align: middle!important;
-	width:20px;
+	color: #FFF;
+    display: inline-block;
+	font-size: 25px;
+    line-height: 50px;
+    height: 100%;
+    padding: 0 5px;
+    vertical-align: middle;
 }
 
-.menu-items:hover {
+#menu-top .menu-items:hover {
 	color: #5a5656;
 }
 
 #clock {
-	display: inline-block;
 	font-weight: bold;
-	margin-left: 252px;
-	text-align: center;
+    font-size:25px;
 	vertical-align: middle;
-	width: 150px;
+}
+
+.icon-adjust {
+    /*margin-left: 287px;*/
 }
 
 #app1, #app2 {
-	/*display:inline-block;*/
-	float:left;
-	height: 449px;
+	height: 430px;
 	padding:0;
 	margin:0;
+    position: relative;
 }
 
+#app1{
+    background-color: #EBE7DE;
+    float:left;
+}
 #app2 {
+    background-color: #E76E66;
 	float:right;
+
 }
 
 .app2border {
-	border-left: 12px solid;
-    border-color: #5a5656;
+	/*border-left: 12px solid;
+    border-color: #5a5656;*/
 }
 
 .smallApp {
-	width: 249px;
+	width: 260px;
 }
 
 .bigApp {
-	width: 539px;
+	width: 540px;
 }
 
 .normalApp {
-	width: 394px;
+	width: 400px;
 }
 
 .fullscreenApp {
-	width: 798px!important;
+	width: 800px!important;
 }
 
 .resize-container {
-	color:#CCC;
-    float:right;
-	text-align: right;
-	width:70px;
+	color:rgba(35,35,35,0.5);
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 .resize-container span {
@@ -190,7 +215,7 @@ textarea {
 }
 
 .resize-container span:hover {
-	color: #5a5656;
+	color:rgba(35,35,35,1);
 }
 
 .centered {
@@ -206,13 +231,13 @@ textarea {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(fonts/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+  src: local('Open Sans'), local('OpenSans'), url(fonts/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
 
 @charset "utf-8";
@@ -416,5 +441,5 @@ textarea {
 
 @font-face {
 	font-family: zz;
-	src: url('http://yourscript.googlecode.com/files/CODE%20Light.otf');
+	src: url('fonts/CODE%20Light.otf');
 }

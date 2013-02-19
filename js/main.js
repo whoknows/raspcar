@@ -1,6 +1,3 @@
-/*var util = require("util");
-var odb = require("odb2.js");*/
-
 $(document).ready(function(){
 	$(".app-fullscreen").click(function(){
 		var container = $(this).parent();
@@ -50,7 +47,7 @@ function loadTemplate(template, receiver, callback) {
     $(receiver).children('.template-container').remove();
 
     $('#divdemerde').load('template/'+template, null, function(){
-        $(receiver).append($('#divdemerde').html());
+        $(receiver).prepend($('#divdemerde').html());
         $('#divdemerde').empty();
 
         if(callback){
@@ -105,23 +102,44 @@ function gaugeInit(obd2) {
 
 	return gauges;
 	*/
+    var colorVal = "#232323";
+    var colorTit = "#898989";
 
-	var g = new JustGage({
-		id: "speedGauge",
-		value: 66,
-		min: 0,
-		max: 200,
-		title: "Speed",
-		levelColorsGradient : false,
-	});
+    var g0 = new JustGage({
+        id: "speedGauge",
+        value: 66,
+        min: 0,
+        max: 200,
+        title: "Speed",
+        //levelColorsGradient : false,
+        titleFontColor:colorTit,
+        valueFontColor:colorVal,
+        labelFontColor:colorTit,
+    });
 
-	var g1 = new JustGage({
-		id: "rpmGauge",
-		value: 2865,
-		min: 0,
-		max: 6000,
-		title: "RPM",
-		levelColorsGradient : false,
-	});
+    var g1 = new JustGage({
+        id: "rpmGauge",
+        value: 2865,
+        min: 0,
+        max: 6000,
+        title: "RPM",
+        //levelColorsGradient : false,
+        titleFontColor:colorTit,
+        valueFontColor:colorVal,
+        labelFontColor:colorTit,
+    });
+
+    var g2 = new JustGage({
+        id: "tmpGauge",
+        value: 150,
+        min: 0,
+        max: 180,
+        title: "Temp",
+        //levelColorsGradient : false,
+        titleFontColor:colorTit,
+        valueFontColor:colorVal,
+        labelFontColor:colorTit,
+    });
+
 	//g.refresh(value);
 }

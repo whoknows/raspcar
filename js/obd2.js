@@ -1,6 +1,6 @@
 /*
  * @author Guillaume Coste <guillaume.coste (at) gmail.com>
- * @lastModified 16/02/2013
+ * @lastModified 19/02/2013
  */
 
 if(typeof util != "undefined"){
@@ -8,7 +8,7 @@ if(typeof util != "undefined"){
 }
 
 function obdCommunicator() {
-	this.ConnectionStatus;
+	this.ConnectionStatus = "Not connected";
 	//this.something;
 
 	// Déclaration des fonctions
