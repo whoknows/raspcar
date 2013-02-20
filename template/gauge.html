@@ -4,40 +4,46 @@
         margin:auto;
         overflow:hidden;
         text-align:center;
+        width: 100%;
     }
 
     .gauge {
         display:inline-block;
     }
 
+    .gauge:active {
+        background-color: #DDD;
+    }
+
     .small-gauge {
-        height: 80px;
-        width: 108px;
+        height: 60px;
+        width: 100px;
     }
 
     .medium-gauge {
-        height: 140px;
-        width: 197px;
+        height: 120px;
+        width: 200px;
     }
 
     .big-gauge {
         height: 240px;
-        width: 394px;
+        width: 400px;
     }
 </style>
 <script>
-    (function($){
+    /*(function($){
         $(".gauge").hammer({}).bind("hold", function(ev) {
             //var gauge = $(this);
-            //;
             //show gauge option
         });
-    })(jQuery);
+        gaugeWidthScale : 10
+        showMinMax : false
+    })(jQuery);*/
 </script>
 <div id="gaugeContainer" class="template-container">
 	<div id="speedGauge" class="big-gauge gauge"></div><br />
-    <div id="rpmGauge" class="medium-gauge gauge"></div><!--
- --><div id="tmpGauge" class="medium-gauge gauge"></div>
+    <div id="rpmGauge" class="medium-gauge gauge"></div><<br />
+    <div id="tmpGauge" class="small-gauge gauge"></div>
 
     <div class="hidden" id="gauge-param">
         <table>

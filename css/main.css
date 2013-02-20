@@ -119,6 +119,7 @@ textarea {
     background-color: #232323;
 	height: 50px;
 }
+
 #menu-top .menu-left, #menu-top .menu-right{
     display: inline-block;
     width: 340px;
@@ -160,10 +161,6 @@ textarea {
 	vertical-align: middle;
 }
 
-.icon-adjust {
-    /*margin-left: 287px;*/
-}
-
 #app1, #app2 {
 	height: 430px;
 	padding:0;
@@ -179,11 +176,6 @@ textarea {
     background-color: #E76E66;
 	float:right;
 
-}
-
-.app2border {
-	/*border-left: 12px solid;
-    border-color: #5a5656;*/
 }
 
 .smallApp {
@@ -203,7 +195,8 @@ textarea {
 }
 
 .resize-container {
-	color:rgba(35,35,35,0.5);
+    color:rgb(35,35,35);
+    color:rgba(35,35,35,0.5);
     position: absolute;
     top: 5px;
     right: 5px;
@@ -215,7 +208,8 @@ textarea {
 }
 
 .resize-container span:hover {
-	color:rgba(35,35,35,1);
+	color:rgb(35,35,35);
+    color:rgba(35,35,35,1);
 }
 
 .centered {
