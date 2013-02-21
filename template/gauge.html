@@ -7,51 +7,58 @@
         width: 100%;
     }
 
-    .gauge {
-        display:inline-block;
-    }
+    .gauge { display:inline-block; }
+    .gauge:active { background-color: #DDD; }
 
-    .gauge:active {
-        background-color: #DDD;
-    }
-
-    .small-gauge {
-        height: 60px;
-        width: 100px;
-    }
-
-    .medium-gauge {
-        height: 120px;
-        width: 200px;
-    }
-
-    .big-gauge {
-        height: 240px;
-        width: 400px;
-    }
+    .small-gauge  { height:  60px; width: 100px; }
+    .medium-gauge { height: 120px; width: 200px; }
+    .big-gauge    { height: 240px; width: 400px; }
 </style>
 <script>
-    /*(function($){
-        $(".gauge").hammer({}).bind("hold", function(ev) {
-            //var gauge = $(this);
-            //show gauge option
+    $(".gauge").hammer({}).bind("hold", function(/*e*/) {
+        var _this = $(this);
+        $('#dialog-box').removeClass('hidden');
+        $('#modal').removeClass('hidden');
+
+        $('#modal').unbind('click');
+        $('#modal').click(function(){
+            $('#modal').addClass('hidden');
+            $('#dialog-box').addClass('hidden');
         });
-        gaugeWidthScale : 10
-        showMinMax : false
-    })(jQuery);*/
+
+        $('.set-size').unbind('click');
+        $('.set-size').click(function(){
+            _this.removeClass('small-gauge medium-gauge big-gauge');
+            _this.addClass($(this).data('size')+'-gauge');
+            _this.children('svg').remove();
+
+            gauges[_this.attr('id')] = new JustGage(gaugesCfg[_this.attr('id')]);
+        });
+    });
+
+    $('#quit-param').click(function(){
+        $('#dialog-box').addClass('hidden');
+    });
 </script>
 <div id="gaugeContainer" class="template-container">
 	<div id="speedGauge" class="big-gauge gauge"></div><br />
-    <div id="rpmGauge" class="medium-gauge gauge"></div><<br />
-    <div id="tmpGauge" class="small-gauge gauge"></div>
+    <div id="rpmGauge" class="medium-gauge gauge"></div><!--
+ --><div id="tmpGauge" class="medium-gauge gauge"></div>
+</div>
 
-    <div class="hidden" id="gauge-param">
-        <table>
-            <tr>
-                <td>Taille</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
+<div id="dialog-box" class="hidden">
+    <div id="dialog-content">
+        <div id="dialog-info"><span><i class="icon-dashboard"></i></span></div><!--
+        --><div id="real-content">
+                <h1>Size :</h1>
+                <button class="set-size btn" data-size="small">Small (1:4)</button>
+                <button class="set-size btn" data-size="medium">Medium (1:2)</button>
+                <button class="set-size btn" data-size="big">Big (1:1)</button>
+            </div>
+        </div>
+    <div id="validation-footer">
+        <button class="btn" id="quit-param"><i class="icon-remove"></i>&nbsp;Annuler</button>
+        <button class="btn btn-success"><i class="icon-save"></i>&nbsp;Enregistrer</button>
+        <button class="btn btn-danger"><i class="icon-trash"></i>&nbsp;Supprimer</button>
     </div>
 </div>

@@ -1,3 +1,8 @@
+var gauges = {};
+var gaugesCfg = {};
+
+$.getJSON("gauge_conf.json",function(data){ gaugesCfg = data });
+
 $(document).ready(function(){
 	$(".app-fullscreen").click(function(){
 		var container = $(this).parent();
@@ -37,7 +42,7 @@ function loadHome() {
 
 function loadSettings() {
     if(!$('#app1').hasClass('fullscreenApp')){
-        $('#app1').children('.resize-container').children('.icon-fullscreen').click();
+        $('#app1').children('.resize-container').children('span').click();
     }
     loadTemplate('settings.html', '#app1', null);
 }
@@ -65,80 +70,8 @@ function myTimer() {
 	document.getElementById("clock").innerHTML = d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '')+d.getMinutes();
 }
 
-function gaugeInit(obd2) {
-	/*var gauges = {
-		"speed":{
-			opts : {
-				id: "speedGauge",
-				value: obd2.getCarSpeed(),
-				min: 0,
-				max: 200,
-				title: "Speed"
-			}
-		},
-		"rpm":{
-			opts : {
-				id: "rpm",
-				value: obd2.getEngineRPM(),
-				min: 0,
-				max: 6e3,
-				title: "RPM"
-			}
-		},
-		"stconso":{
-			opts : {
-				id: "stconso",
-				value: obd2.getShortTermConso(),
-				min: 0,
-				max: 100,
-				title: "Shot Term Consomation"
-			}
-		}
-	};
-	$.each(gauges, function(k,v){
-		k.gauge = new JustGage(k.opts);
+function gaugeInit() {
+	$.each(gaugesCfg, function(k,v){
+		gauges[k] = new JustGage(v);
 	});
-
-	return gauges;
-	*/
-    var colorVal = "#232323";
-    var colorTit = "#898989";
-
-    var g0 = new JustGage({
-        id: "speedGauge",
-        value: 66,
-        min: 0,
-        max: 200,
-        title: "Speed",
-        //levelColorsGradient : false,
-        titleFontColor:colorTit,
-        valueFontColor:colorVal,
-        labelFontColor:colorTit,
-    });
-
-    var g1 = new JustGage({
-        id: "rpmGauge",
-        value: 2865,
-        min: 0,
-        max: 6000,
-        title: "RPM",
-        //levelColorsGradient : false,
-        titleFontColor:colorTit,
-        valueFontColor:colorVal,
-        labelFontColor:colorTit,
-    });
-
-    var g2 = new JustGage({
-        id: "tmpGauge",
-        value: 150,
-        min: 0,
-        max: 180,
-        title: "Temp",
-        //levelColorsGradient : false,
-        titleFontColor:colorTit,
-        valueFontColor:colorVal,
-        labelFontColor:colorTit,
-    });
-
-	//g.refresh(value);
 }
