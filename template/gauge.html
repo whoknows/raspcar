@@ -1,12 +1,4 @@
 <style>
-    .template-container {
-        height:100%;
-        margin:auto;
-        overflow:hidden;
-        text-align:center;
-        width: 100%;
-    }
-
     .gauge { display:inline-block; }
     .gauge:active { background-color: #DDD; }
 
@@ -34,11 +26,33 @@
 
             gauges[_this.attr('id')] = new JustGage(gaugesCfg[_this.attr('id')]);
         });
+
+        bindButtons(_this);
     });
 
-    $('#quit-param').click(function(){
-        $('#dialog-box').addClass('hidden');
-    });
+    function bindButtons(_gauge){
+        $('#discard-param').unbind('click');
+        $('#save-param').unbind('click');
+        $('#delete-param').unbind('click');
+
+        $('#discard-param').click(function(){
+            $('#dialog-box').addClass('hidden');
+            $('#modal').addClass('hidden');
+        });
+
+        $('#save-param').click(function(){
+            $('#dialog-box').addClass('hidden');
+            $('#modal').addClass('hidden');
+        });
+
+        $('#delete-param').click(function(){
+            if(confirm('Do you realy want to delete this gauge ?')){
+                _gauge.remove();
+            }
+            $('#dialog-box').addClass('hidden');
+            $('#modal').addClass('hidden');
+        });
+    }
 </script>
 <div id="gaugeContainer" class="template-container">
 	<div id="speedGauge" class="big-gauge gauge"></div><br />
@@ -57,8 +71,8 @@
             </div>
         </div>
     <div id="validation-footer">
-        <button class="btn" id="quit-param"><i class="icon-remove"></i>&nbsp;Annuler</button>
-        <button class="btn btn-success"><i class="icon-save"></i>&nbsp;Enregistrer</button>
-        <button class="btn btn-danger"><i class="icon-trash"></i>&nbsp;Supprimer</button>
+        <button class="btn" id="discard-param"><i class="icon-remove"></i>&nbsp;Annuler</button>
+        <button class="btn btn-success" id="save-param"><i class="icon-save"></i>&nbsp;Enregistrer</button>
+        <button class="btn btn-danger" id="delete-param"><i class="icon-trash"></i>&nbsp;Supprimer</button>
     </div>
 </div>

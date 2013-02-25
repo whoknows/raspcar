@@ -12,19 +12,19 @@
 		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		<script src="js/vendor/prefixfree.min.js"></script>
 	</head>
-	<body onload="loadHome()" class="day-mode">
+	<body class="day-mode">
 		<br /><!-- a enlever en "prod" -->
 		<div id="body-container">
 			<div id="menu-top">
                 <div class="menu-left">
-                    <span class="menu-items" onclick="loadSettings()"><i class="icon-cog"></i></span>
-				    <span class="menu-items" onclick="loadHome()"><i class="icon-home"></i></span>
+                    <span class="menu-items" id="settings"><i class="icon-cog"></i></span>
+				    <span class="menu-items" id="home"><i class="icon-home"></i></span>
                 </div><!--
              --><div class="menu-middle">
                     <span id="clock"></span><!-- Setting - show date / show time - 24h/12h -->
                 </div><!--
              --><div class="menu-right">
-                    <span class="menu-items" onclick="toggleDayNight()"><i class="icon-adjust"></i></span>
+                    <span class="menu-items" id="day-night"><i class="icon-adjust"></i></span>
                 </div>
 			</div>
 			<div id="main-ui">
@@ -54,5 +54,17 @@
         <script src="js/vendor/jquery.specialevent.hammer.js"></script>
         <script src="js/vendor/jquery.hammer.js"></script>
 		<script src="js/main.js"></script>
+        <!--<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+        <script>
+            /*var socket = io.connect('http://localhost:8080');
+            socket.on('carinfo', function (data) {
+                document.getElementById('data').innerHTML = data.data;
+                $.each(data, function(k,v){
+                    if(typeof gauges[k] != "undefined"){
+                        gauges[k].refresh(v);
+                    }
+                });
+            });*/
+        </script>-->
 	</body>
 </html>

@@ -4,7 +4,23 @@ var gaugesCfg = {};
 $.getJSON("gauge_conf.json",function(data){ gaugesCfg = data });
 
 $(document).ready(function(){
-	$(".app-fullscreen").click(function(){
+    loadHome();
+    $('#home').click(function(){ loadHome() });
+
+    $('#settings').click(function(){
+        if(!$('#app1').hasClass('fullscreenApp')){
+            $('#app1').children('.resize-container').children('span').click();
+        }
+        loadTemplate('settings.html', '#app1', null);
+    });
+
+    /*
+    $('#day-night').click(function(){
+        //TODO
+    });
+    */
+
+    $(".app-fullscreen").click(function(){
 		var container = $(this).parent();
         var appX = container.data('parent-app');
 		var appY = appX == 'app2' ? 'app1' : 'app2';
@@ -33,18 +49,15 @@ $(document).ready(function(){
 	setInterval(function(){myTimer()},1000);
 });
 
-function loadHome() {
+function loadHome(){
     $('#app1').removeClass('fullscreenApp hidden');
     $('#app2').removeClass('fullscreenApp hidden');
-    loadTemplate('gauge.html', '#app1', function(){gaugeInit(null);});
-    //loadTemplate('gauge.html', '#app2', function(){gaugeInit(null);});
-}
-
-function loadSettings() {
-    if(!$('#app1').hasClass('fullscreenApp')){
-        $('#app1').children('.resize-container').children('span').click();
-    }
-    loadTemplate('settings.html', '#app1', null);
+    loadTemplate('gauge.html', '#app1', function(){
+        $.each(gaugesCfg, function(k,v){
+        	gauges[k] = new JustGage(v);
+        });
+    });
+    //loadTemplate('player.html', '#app2', function(){ /*TODO*/ });
 }
 
 function loadTemplate(template, receiver, callback) {
@@ -54,24 +67,11 @@ function loadTemplate(template, receiver, callback) {
         $(receiver).prepend($('#divdemerde').html());
         $('#divdemerde').empty();
 
-        if(callback){
-            callback();
-        }
+        if(callback) callback();
 	});
-}
-
-function toggleDayNight() {
-    $('body').toggleClass('night-mode');
-    $('.app2border').toggleClass('night-mode');
 }
 
 function myTimer() {
 	var d = new Date();
 	document.getElementById("clock").innerHTML = d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '')+d.getMinutes();
-}
-
-function gaugeInit() {
-	$.each(gaugesCfg, function(k,v){
-		gauges[k] = new JustGage(v);
-	});
 }

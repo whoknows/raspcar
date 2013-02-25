@@ -16,6 +16,7 @@ body {
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	line-height: 1.5em;
+    user-select:none;
 }
 
 a { text-decoration: none; }
@@ -23,35 +24,8 @@ a { text-decoration: none; }
 h1 { font-size: 1em; }
 h2 { font-size: 0.9em; color:#555; }
 
-
-h1, p {
-	margin-bottom: 10px;
-}
-
-strong {
-	font-weight: bold;
-}
-
-
-/*
- * Remove text-shadow in selection highlight: h5bp.com/i
- * These selection declarations have to be separate.
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
-
-::selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
+h1, p { margin-bottom: 10px; }
+strong { font-weight: bold; }
 
 hr {
     display: block;
@@ -62,53 +36,16 @@ hr {
     padding: 0;
 }
 
-/*
- * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
- */
-
-img {
-    vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
-}
-
-.uppercase { text-transform: uppercase; }
-
-/* ==========================================================================
-   Chrome Frame prompt
-   ========================================================================== */
-
-.chromeframe {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
+img { vertical-align: middle; }
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
 .night-mode {
-    background-color: #5a5656!important;
-    border-color:#f4f4f4!important;
-    color: #f4f4f4!important;
+    background-color: #5a5656;
+    border-color:#f4f4f4;
+    color: #f4f4f4;
 }
 
 #body-container {
@@ -174,26 +111,18 @@ textarea {
     background-color: #EBE7DE;
     float:left;
 }
+
 #app2 {
     background-color: #E76E66;
 	float:right;
-
 }
 
-.smallApp {
-	width: 260px;
-}
-
-.bigApp {
-	width: 540px;
-}
-
-.normalApp {
-	width: 400px;
-}
+.smallApp  { width: 260px; }
+.bigApp    { width: 540px; }
+.normalApp { width: 400px; }
 
 .fullscreenApp {
-	width: 800px!important;
+	width: 800px;/*!important;*/
 }
 
 .resize-container {
@@ -217,6 +146,14 @@ textarea {
 .centered {
 	margin:auto;
 	width: 100px;
+}
+
+.template-container {
+    height:100%;
+    margin:auto;
+    overflow:hidden;
+    text-align:center;
+    width: 100%;
 }
 
 #modal {
@@ -296,7 +233,7 @@ textarea {
 }
 
 /* ==========================================================================
-   Login form
+   Fonts
    ========================================================================== */
 
 @font-face {
@@ -312,16 +249,10 @@ textarea {
   src: local('Open Sans'), local('OpenSans'), url(fonts/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
 
-@charset "utf-8";
-/* CSS Document */
-
-
-/* ---------- FONTAWESOME ---------- */
-
-[class*="fontawesome-"]:before {
-  font-family: 'FontAwesome', sans-serif;
+@font-face {
+    font-family: 'Code Light';
+	src: url('fonts/CODE%20Light.otf');
 }
-
 
 /* ==========================================================================
    Helper classes
@@ -346,18 +277,11 @@ textarea {
     height: 150%;
 }
 
-/*
- * Hide from both screenreaders and browsers: h5bp.com/u
- */
 
 .hidden {
     display: none !important;
     visibility: hidden;
 }
-
-/*
- * Hide only visually, but have it available for screenreaders: h5bp.com/v
- */
 
 .visuallyhidden {
     border: 0;
@@ -369,153 +293,6 @@ textarea {
     position: absolute;
     width: 1px;
 }
-
-/*
- * Extends the .visuallyhidden class to allow the element to be focusable
- * when navigated to via the keyboard: h5bp.com/p
- */
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-}
-
-/*
- * Hide visually and from screenreaders, but maintain layout
- */
-
-.invisible {
-    visibility: hidden;
-}
-
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
-
-.clearfix:before,
-.clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
-
-.clearfix:after {
-    clear: both;
-}
-
-
-/*.clearfix {
-    *zoom: 1;
-}*/
-
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   Theses examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid required HTTP connection: h5bp.com/r
-   ========================================================================== */
-
-@media print {
-    * {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links for images, or javascript/internal links
-     */
-
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    @page {
-        margin: 0.5cm;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
-}
-
-/*Some nice fonts*/
-
-@font-face {
-	font-family: zz;
-	src: url('fonts/CODE%20Light.otf');
-}
-
 
 /****************************************/
 /*               BOOTSTRAP              */
