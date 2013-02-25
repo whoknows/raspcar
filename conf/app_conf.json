@@ -1,0 +1,12 @@
+{
+    "app1" : {
+        "color": "#EBE7DE",
+        "size": "400px",
+        "app": "gauge"
+    },
+    "app2" : {
+        "color": "#E76E66",
+        "size": "400px",
+        "app": "player"
+    }
+}

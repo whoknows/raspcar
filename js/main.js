@@ -1,7 +1,20 @@
 var gauges = {};
 var gaugesCfg = {};
+var appCfg = {};
 
-$.getJSON("gauge_conf.json",function(data){ gaugesCfg = data });
+$.ajax({
+    dataType: "json",
+    url: 'conf/gauge_conf.json',
+    async:false,
+    success: function(data){ gaugesCfg = data }
+});
+
+$.ajax({
+    dataType: "json",
+    url: 'conf/app_conf.json',
+    async:false,
+    success: function(data){ appCfg = data }
+});
 
 $(document).ready(function(){
     loadHome();
@@ -44,24 +57,34 @@ $(document).ready(function(){
 		$(this).parent().children(".app-toggle[data-action="+(action=='bigger'?'smaller':'bigger')+"]").show();
 	});
 
-	//Horloge
-	myTimer();
+	myTimer(); //Horloge
 	setInterval(function(){myTimer()},1000);
 });
 
 function loadHome(){
-    $('#app1').removeClass('fullscreenApp hidden');
-    $('#app2').removeClass('fullscreenApp hidden');
-    loadTemplate('gauge.html', '#app1', function(){
+    // App1 init
+    $('#app1').css({
+        'background-color': appCfg.app1.color,
+        'width' : appCfg.app1.size
+    }).removeClass('fullscreenApp hidden');
+
+    loadTemplate(appCfg.app1.app+'.html', '#app1', function(){
         $.each(gaugesCfg, function(k,v){
-        	gauges[k] = new JustGage(v);
+            gauges[k] = new JustGage(v);
         });
     });
-    //loadTemplate('player.html', '#app2', function(){ /*TODO*/ });
+
+    // App2 init
+    $('#app2').css({
+        'background-color': appCfg.app2.color,
+        'width' : appCfg.app2.size
+    }).removeClass('fullscreenApp hidden');
+
+    loadTemplate(appCfg.app2.app+'.html', '#app2', null);
 }
 
 function loadTemplate(template, receiver, callback) {
-    $(receiver).children('.template-container').remove();
+    $(receiver+' > *:not(.resize-container)').remove();
 
     $('#divdemerde').load('template/'+template, null, function(){
         $(receiver).prepend($('#divdemerde').html());

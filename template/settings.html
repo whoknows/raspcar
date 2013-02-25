@@ -1,8 +1,194 @@
 <style>
-    .template-container {
-        padding: 5px 10px;
+    .template-settings {
+        color: #5a5656;
+        padding: 5px 20px;
+        text-align:left;
+    }
+
+    .template-settings h1 { font-size:1.6em; margin-bottom: 20px; }
+    .template-settings h2 { font-size:1em; }
+
+    .app-param {
+        height:140px;
+        margin-bottom: 10px;
+        width:50%;
+    }
+
+    #left-param  { float:left; }
+    #right-param { float:right; }
+
+    .color-picker{
+        border: 1px solid #CCC;
+        cursor:pointer;
+        display:inline-block;
+        height:20px;
+        margin: 5px;
+        width:20px;
+    }
+
+    .color-selected {
+        border:4px solid #232323;
+    }
+
+    .app-selector {
+        border: 1px solid transparent;
+        cursor:pointer;
+        display:inline-block;
+        font-size: 30px;
+        margin: 5px;
+        padding:5px;
+    }
+
+    .app-selected {
+        color: #EBE7DE;
+        background-color: #5a5656;
+    }
+
+    #size-container {
+        margin:auto;
+        text-align:center;
+        width:680px;
+    }
+
+    .size-demo {
+        border:1px solid #CCC;
+        cursor:pointer;
+        display:inline-block;
+        height:72px;
+        margin:5px;
+        position: relative;
+        width:120px;
+    }
+
+    .size-demo span {
+        height:100%;
+        line-height:72px;
+        margin:0;
+        padding:0;
+        position:relative;
+        text-align:center;
+        vertical-align:middle;
+    }
+
+    .size-demo .left {
+        background-color: #EBE7DE;
+        float:left;
+    }
+
+    .size-demo .right {
+        background-color:#E76E66;
+        float:right;
+    }
+
+    .width-30  { width: 35%; }
+    .width-50  { width: 50%; }
+    .width-70  { width: 65%; }
+    .width-100 { width:100%; }
+
+    .size-selected { border: 1px solid #232323!important; }
+    #arrow-selected {
+        font-size:40px;
+        position:relative;
+        top: 0;
+        left: -272px;
     }
 </style>
-<div class="template-container">
+<script>
+    $('.size-demo').click(function(){
+        var _this = $(this);
+        $('.size-selected').removeClass('size-selected');
+        _this.addClass('size-selected');
+        $('#arrow-selected').css('left', _this.data('pos'));
+    });
+
+    $('.app-selector').click(function(){
+        $(this).parent().children('.app-selected').removeClass('app-selected');
+        $(this).addClass('app-selected');
+    });
+
+    $('.color-picker').click(function(){
+        $(this).parent().children('.color-selected').removeClass('color-selected');
+        $(this).addClass('color-selected');
+    });
+    $('.color-picker').each(function(){
+        $(this).css('background-color', $(this).data('color'));
+    });
+</script>
+<div class="template-container template-settings">
 	<h1>Settings</h1>
+
+    <div id="left-param" class="app-param">
+        <h2>Left application :</h2>
+        <table>
+            <tr>
+                <td>App :</td>
+                <td>
+                    <span class="app-selector app-selected"><i class="icon-dashboard"></i></span>
+                    <span class="app-selector"><i class="icon-play"></i></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Color :</td>
+                <td>
+                    <span class="color-picker color-selected" data-color="#EBE7DE">&nbsp;</span>
+                    <span class="color-picker" data-color="#E76E66">&nbsp;</span>
+                    <span class="color-picker" data-color="#1B7E5A">&nbsp;</span>
+                    <span class="color-picker" data-color="#579AA9">&nbsp;</span>
+                    <span class="color-picker" data-color="#695B8E">&nbsp;</span>
+                    <span class="color-picker" data-color="#8C5E7A">&nbsp;</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="right-param" class="app-param">
+        <h2>Right application :</h2>
+        <table>
+            <tr>
+                <td>App :</td>
+                <td>
+                    <span class="app-selector"><i class="icon-dashboard"></i></span>
+                    <span class="app-selector app-selected"><i class="icon-play"></i></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Color :</td>
+                <td>
+                    <span class="color-picker" data-color="#EBE7DE">&nbsp;</span>
+                    <span class="color-picker color-selected" data-color="#E76E66">&nbsp;</span>
+                    <span class="color-picker" data-color="#1B7E5A">&nbsp;</span>
+                    <span class="color-picker" data-color="#579AA9">&nbsp;</span>
+                    <span class="color-picker" data-color="#695B8E">&nbsp;</span>
+                    <span class="color-picker" data-color="#8C5E7A">&nbsp;</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Default display mode :</h2>
+    <div id="size-container">
+        <span class="size-demo size-selected" data-pos="-272" data-app1-size="400px" data-app2-size="400px">
+            <span class="width-50 left">50</span>
+            <span class="width-50 right">50</span>
+        </span>
+        <span class="size-demo" data-pos="-136" data-app1-size="260px" data-app2-size="540px">
+            <span class="width-30 left">35</span>
+            <span class="width-70 right">65</span>
+        </span>
+        <span class="size-demo" data-pos="0" data-app1-size="540px" data-app2-size="260px">
+            <span class="width-70 left">65</span>
+            <span class="width-30 right">35</span>
+        </span>
+        <span class="size-demo" data-pos="136" data-app1-size="800px" data-app2-size="0">
+            <span class="width-100 left">100</span>
+            <span class="right"></span>
+        </span>
+        <span class="size-demo" data-pos="272" data-app1-size="0" data-app2-size="800px">
+            <span class="left"></span>
+            <span class="width-100 right">100</span>
+        </span>
+
+        <span id="arrow-selected"><i class="icon-arrow-up"></i></span>
+    </div>
+
 </div>
