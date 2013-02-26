@@ -1,13 +1,16 @@
-var http = require('http');
-var fs = require('fs');
-var path = require('path');
+var http = require('http').createServer(handler),
+    io   = require('socket.io').listen(http),
+    fs   = require('fs'),
+    path = require('path'),
+    exec = require('exec');
 
-http.createServer(function (request, response) {
+http.listen(80);
+
+function handler (request, response) {
 
 	var filePath = '.' + request.url;
-	if (filePath == './')
-		filePath = './index.html';
-console.log(filePath);
+	if (filePath == './') filePath = './index.html';
+
 	var extname = path.extname(filePath);
 	var contentType;
 	switch (extname) {
@@ -44,6 +47,39 @@ console.log(filePath);
 			response.end();
 		}
 	});
-}).listen(80);
+}
 
-console.log('Server running at http://rpi.dtdns.net/');
+var gaugesData = {};
+io.sockets.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+
+    socket.on('startGauges', function (data) {
+        setInterval(function(){
+            getGaugesData(data);
+            socket.emit('carinfo', { data : gaugesData });
+        },100);
+    });
+
+    socket.on('saveCfg', function (data) {
+        saveCfg(data.cfg, data.data);
+    });
+});
+
+
+/**************************************************************************/
+/*                                Functions                               */
+/**************************************************************************/
+
+function getGaugesData() {
+    //obd.getCarSpeed();
+	var child;
+	child = exec("ma commande", function (error, stdout, stderr) {
+		gaugesData = stdout;
+	});
+}
+
+function saveCfg(cfg, data){
+    fs.writeFile("conf/"+cfg, JSON.stringify(data), function(err) {
+        console.log(err ? err : 'OK');
+    });
+}

@@ -95,8 +95,6 @@
     }
 </style>
 <script>
-	var appCfgTmp = clone(appCfg);
-
     $('.size-demo .right').css('background-color', appCfg.app2.color);
     $('.size-demo .left' ).css('background-color', appCfg.app1.color);
 
@@ -105,8 +103,8 @@
         $('.size-selected').removeClass('size-selected');
         _this.addClass('size-selected');
 
-        appCfgTmp.app1.size = $(this).data('app1-size');
-        appCfgTmp.app2.size = $(this).data('app2-size');;
+        appCfg.app1.size = $(this).data('app1-size');
+        appCfg.app2.size = $(this).data('app2-size');
     });
 
     $('.app-selector').click(function(){
@@ -114,9 +112,8 @@
         $(this).addClass('app-selected');
 
         var curApp = $(this).parents('.app-param').data('app');
-        appCfgTmp[curApp].app.name = $(this).data('app');
-        appCfgTmp[curApp].app.callback = $(this).data('callback');
-        console.log(appCfg);
+        appCfg[curApp].app.name = $(this).data('app');
+        appCfg[curApp].app.callback = $(this).data('callback');
     });
 
     $('.color-picker').click(function(){
@@ -124,7 +121,7 @@
         $(this).addClass('color-selected');
 
         var curApp = $(this).parents('.app-param').data('app');
-        appCfgTmp[curApp].color = $(this).data('color');
+        appCfg[curApp].color = $(this).data('color');
     });
 
     $('.color-picker').each(function(){
@@ -135,10 +132,12 @@
             $(this).addClass('color-selected');
         }
     });
+
+    $('#save-settings').click(function(){
+        socket.emit('saveCfg', {cfg:'app_conf.json', data:appCfg});
+    });
 </script>
 <div class="template-container template-settings">
-	<!--<h1>Settings</h1>-->
-
     <div id="left-param" class="app-param" data-app="app1">
         <h2>Left application</h2>
         <table>
