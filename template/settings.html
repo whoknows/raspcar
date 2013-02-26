@@ -134,6 +134,7 @@
     });
 
     $('#save-settings').click(function(){
+		alert('saved');
         socket.emit('saveCfg', {cfg:'app_conf.json', data:appCfg});
     });
 </script>
