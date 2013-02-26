@@ -4,20 +4,24 @@ var path = require('path');
 
 http.createServer(function (request, response) {
 
-	console.log('request starting...');
-
 	var filePath = '.' + request.url;
 	if (filePath == './')
 		filePath = './index.html';
-
+console.log(filePath);
 	var extname = path.extname(filePath);
-	var contentType = 'text/html';
+	var contentType;
 	switch (extname) {
 		case '.js':
 			contentType = 'text/javascript';
 			break;
 		case '.css':
 			contentType = 'text/css';
+			break;
+		case '.html':
+			contentType = 'text/html';
+			break;
+		default :
+			contentType = 'text/plain';
 			break;
 	}
 
