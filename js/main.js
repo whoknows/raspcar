@@ -102,3 +102,12 @@ function myTimer() {
 	var d = new Date();
 	document.getElementById("clock").innerHTML = d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '')+d.getMinutes();
 }
+
+function clone(obj) {
+	if (null == obj || "object" != typeof obj) return obj;
+	var copy = new obj.constructor();
+	for (var attr in obj) {
+		if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+	}
+	return copy;
+}

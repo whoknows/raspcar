@@ -95,6 +95,8 @@
     }
 </style>
 <script>
+	var appCfgTmp = clone(appCfg);
+
     $('.size-demo .right').css('background-color', appCfg.app2.color);
     $('.size-demo .left' ).css('background-color', appCfg.app1.color);
 
@@ -103,8 +105,8 @@
         $('.size-selected').removeClass('size-selected');
         _this.addClass('size-selected');
 
-        appCfg.app1.size = $(this).data('app1-size');
-        appCfg.app2.size = $(this).data('app2-size');;
+        appCfgTmp.app1.size = $(this).data('app1-size');
+        appCfgTmp.app2.size = $(this).data('app2-size');;
     });
 
     $('.app-selector').click(function(){
@@ -112,8 +114,8 @@
         $(this).addClass('app-selected');
 
         var curApp = $(this).parents('.app-param').data('app');
-        appCfg[curApp].app.name = $(this).data('app');
-        appCfg[curApp].app.callback = $(this).data('callback');
+        appCfgTmp[curApp].app.name = $(this).data('app');
+        appCfgTmp[curApp].app.callback = $(this).data('callback');
         console.log(appCfg);
     });
 
@@ -122,7 +124,7 @@
         $(this).addClass('color-selected');
 
         var curApp = $(this).parents('.app-param').data('app');
-        appCfg[curApp].color = $(this).data('color');
+        appCfgTmp[curApp].color = $(this).data('color');
     });
 
     $('.color-picker').each(function(){
