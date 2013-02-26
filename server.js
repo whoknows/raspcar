@@ -20,6 +20,9 @@ console.log(filePath);
 		case '.html':
 			contentType = 'text/html';
 			break;
+		case '.woff' :
+			contentType = 'font/opentype';
+			break;
 		default :
 			contentType = 'text/plain';
 			break;
@@ -43,4 +46,4 @@ console.log(filePath);
 	});
 }).listen(80);
 
-console.log('Server running at http://127.0.0.1:8080/');
+console.log('Server running at http://rpi.dtdns.net/');
