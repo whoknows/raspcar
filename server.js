@@ -54,6 +54,7 @@ io.sockets.on('connection', function (socket) {
     socket.emit('news', { hello: 'world' });
 
     socket.on('startGauges', function (data) {
+        //odb.Connect();
         setInterval(function(){
             getGaugesData(data);
             socket.emit('carinfo', { data : gaugesData });
