@@ -1,16 +1,22 @@
 <style>
     .template-settings {
+        background-color: #EBE7DE;
         color: #5a5656;
-        padding: 5px 20px;
+        padding: 10px 20px;
         text-align:left;
     }
 
+    .table-title {
+        padding-right: 10px;
+        text-align:right;
+    }
+
     .template-settings h1 { font-size:1.6em; margin-bottom: 10px; }
-    .template-settings h2 { font-size:1em; }
+    .template-settings h2 { font-size:1.2em; }
 
     .app-param {
         height:160px;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
         width:50%;
     }
 
@@ -36,8 +42,9 @@
         cursor:pointer;
         display:inline-block;
         font-size: 30px;
+        height:35px;
         margin: 5px;
-        padding:5px;
+        padding:0;
         text-align:center;
         width:35px;
     }
@@ -86,12 +93,6 @@
         border: 1px solid #5a5656;
         outline:3px solid #5a5656;
     }
-    #arrow-selected {
-        font-size:40px;
-        position:relative;
-        top: 0;
-        left: -272px;
-    }
 </style>
 <script>
     $('.size-demo .right').css('background-color', appCfg.app2.color);
@@ -101,7 +102,9 @@
         var _this = $(this);
         $('.size-selected').removeClass('size-selected');
         _this.addClass('size-selected');
-        $('#arrow-selected').css('left', _this.data('pos'));
+
+        appCfg.app1.size = $(this).data('app1-size');
+        appCfg.app2.size = $(this).data('app2-size');;
     });
 
     $('.app-selector').click(function(){
@@ -109,7 +112,9 @@
         $(this).addClass('app-selected');
 
         var curApp = $(this).parents('.app-param').data('app');
-        appCfg[curApp].app = $(this).data('app');
+        appCfg[curApp].app.name = $(this).data('app');
+        appCfg[curApp].app.callback = $(this).data('callback');
+        console.log(appCfg);
     });
 
     $('.color-picker').click(function(){
@@ -118,7 +123,6 @@
 
         var curApp = $(this).parents('.app-param').data('app');
         appCfg[curApp].color = $(this).data('color');
-
     });
 
     $('.color-picker').each(function(){
@@ -131,20 +135,20 @@
     });
 </script>
 <div class="template-container template-settings">
-	<h1>Settings</h1>
+	<!--<h1>Settings</h1>-->
 
     <div id="left-param" class="app-param" data-app="app1">
-        <h2>Left application :</h2>
+        <h2>Left application</h2>
         <table>
             <tr>
-                <td>App :</td>
+                <td class="table-title">App</td>
                 <td>
-                    <span class="app-selector app-selected" data-app="gauge"><i class="icon-dashboard"></i></span>
-                    <span class="app-selector" data-app="player"><i class="icon-play"></i></span>
+                    <span class="app-selector app-selected" data-app="gauge" data-callback="gaugesInit"><i class="icon-dashboard"></i></span>
+                    <span class="app-selector" data-app="player" data-callback="null"><i class="icon-play"></i></span>
                 </td>
             </tr>
             <tr>
-                <td>Color :</td>
+                <td class="table-title">Color</td>
                 <td>
                     <span class="color-picker" data-color="#EBE7DE">&nbsp;</span>
                     <span class="color-picker" data-color="#E76E66">&nbsp;</span>
@@ -158,17 +162,17 @@
     </div>
 
     <div id="right-param" class="app-param" data-app="app2">
-        <h2>Right application :</h2>
+        <h2>Right application</h2>
         <table>
             <tr>
-                <td>App :</td>
+                <td class="table-title">App</td>
                 <td>
-                    <span class="app-selector" data-app="gauge"><i class="icon-dashboard"></i></span>
-                    <span class="app-selector app-selected" data-app="player"><i class="icon-play"></i></span>
+                    <span class="app-selector" data-app="gauge" data-callback="gaugesInit"><i class="icon-dashboard"></i></span>
+                    <span class="app-selector app-selected" data-app="player" data-callback="null"><i class="icon-play"></i></span>
                 </td>
             </tr>
             <tr>
-                <td>Color :</td>
+                <td class="table-title">Color</td>
                 <td>
                     <span class="color-picker" data-color="#EBE7DE">&nbsp;</span>
                     <span class="color-picker" data-color="#E76E66">&nbsp;</span>
@@ -181,7 +185,7 @@
         </table>
     </div>
 
-    <h2>Default display mode :</h2>
+    <h2>Default display mode</h2>
     <div id="size-container">
         <span class="size-demo size-selected" data-pos="-272" data-app1-size="400px" data-app2-size="400px">
             <span class="width-50 left">50</span>
@@ -203,8 +207,6 @@
             <span class="left"></span>
             <span class="width-100 right">100</span>
         </span>
-
-        <span id="arrow-selected"><i class="icon-arrow-up"></i></span>
     </div>
 
 </div>

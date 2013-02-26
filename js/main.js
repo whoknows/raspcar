@@ -68,11 +68,8 @@ function loadHome(){
         'width' : appCfg.app1.size
     }).removeClass('fullscreenApp hidden');
 
-    loadTemplate(appCfg.app1.app+'.html', '#app1', function(){
-        $.each(gaugesCfg, function(k,v){
-            gauges[k] = new JustGage(v);
-        });
-    });
+    var app1 = appCfg.app1.app[0];
+    loadTemplate(app1.name+'.html', '#app1', app1.callback);
 
     // App2 init
     $('#app2').css({
@@ -80,7 +77,8 @@ function loadHome(){
         'width' : appCfg.app2.size
     }).removeClass('fullscreenApp hidden');
 
-    loadTemplate(appCfg.app2.app+'.html', '#app2', null);
+    var app2 = appCfg.app2.app[0];
+    loadTemplate(app2.name+'.html', '#app2', app2.callback);
 }
 
 function loadTemplate(template, receiver, callback) {
@@ -90,8 +88,14 @@ function loadTemplate(template, receiver, callback) {
         $(receiver).prepend($('#divdemerde').html());
         $('#divdemerde').empty();
 
-        if(callback) callback();
+        if(callback && window[callback]) window[callback]();
 	});
+}
+
+function gaugesInit(){
+    $.each(gaugesCfg, function(k,v){
+        gauges[k] = new JustGage(v);
+    });
 }
 
 function myTimer() {
