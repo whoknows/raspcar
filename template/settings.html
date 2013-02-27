@@ -131,6 +131,11 @@
         var curApp = $(this).parents('.app-param').data('app');
         appCfg[curApp].app[0].name = $(this).data('app');
         appCfg[curApp].app[0].callback = $(this).data('callback');
+
+        var otherApp = curApp == 'app1' ? 'app2' :'app1';
+        if(appCfg[curApp].app[0].name == appCfg[otherApp].app[0].name){
+            $('.app-param[data-app='+otherApp+']').find('.app-selector[data-app!='+appCfg[curApp].app[0].name+']')[0].click();
+        }
     });
 
     $('.color-picker').click(function(){
