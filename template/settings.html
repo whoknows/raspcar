@@ -1,7 +1,7 @@
 <style>
     .template-settings {
         background-color: #EBE7DE;
-        color: #5a5656;
+        color: #232323;
         font-family:'ColabLig';
         padding: 10px 20px;
         text-align:left;
@@ -12,7 +12,7 @@
         text-align:right;
     }
 
-    .template-settings h2 { font-size:1.3em; }
+    .template-settings h2 { font-size:1.6em; font-weight:normal; }
     .template-settings h3 { font-size:1.1em; font-weight:normal; }
 
     .app-param {
@@ -40,6 +40,7 @@
 
     .app-selector {
         border: 1px solid transparent;
+        color: #5a5656;
         cursor:pointer;
         display:inline-block;
         font-size: 30px;
@@ -93,6 +94,12 @@
     .size-selected {
         border: 1px solid #5a5656;
         outline:3px solid #5a5656;
+    }
+
+    #button-container {
+        margin:10px auto;
+        text-align:center;
+        width:200px;
     }
 </style>
 <script>
@@ -210,5 +217,9 @@
             <span class="width-100 right">100</span>
         </span>
     </div>
-    <button class="btn btn-success" id="save-settings">Save</button>
+
+    <div id="button-container">
+        <span class="minbtn minbtn-green" id="save-settings">Save</span>
+        <span class="minbtn minbtn-red" id="cancel-settings">Cancel</span>
+    </div>
 </div>
