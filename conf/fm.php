@@ -6,8 +6,12 @@ if(isset($_POST['conf']) && isset($_POST['data'])){
 
 function save_conf($conf, $data){
     $handle = fopen($conf, "w");
-    fwrite($handle, $data);
-    fclose($handle);
+    if($handle){
+        fwrite($handle, $data);
+        fclose($handle);
+    } else {
+        echo "Cant open file.";
+    }
 }
 
 ?>
