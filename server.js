@@ -1,10 +1,11 @@
-var http = require('http').createServer(handler),
-    io   = require('socket.io').listen(http),
-    fs   = require('fs'),
-    path = require('path'),
-    exec = require('exec');
+//var http = require('http').createServer(handler),
+var io   = require('socket.io').listen(8080);
+var fs   = require('fs');
+   // path = require('path'),
+var exec = require('exec');
 
-http.listen(80);
+/*
+http.listen(8080);
 
 function handler (request, response) {
 
@@ -48,9 +49,11 @@ function handler (request, response) {
 		}
 	});
 }
+*/
 
 var gaugesData = {};
 io.sockets.on('connection', function (socket) {
+	console.log('Connected');
     socket.emit('news', { hello: 'world' });
 
     socket.on('startGauges', function (data) {
