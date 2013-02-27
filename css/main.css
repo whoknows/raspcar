@@ -251,8 +251,12 @@ img { vertical-align: middle; }
 }
 
 @font-face {
-    font-family: 'Code Light';
-	src: url('fonts/CODE%20Light.otf');
+    font-family: 'ColabReg';
+	src: url('fonts/ColabReg.otf');
+}
+@font-face {
+    font-family: 'ColabLig';
+    src: url('fonts/ColabLig.otf');
 }
 
 /* ==========================================================================

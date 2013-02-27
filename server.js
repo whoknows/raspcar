@@ -62,6 +62,7 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('saveCfg', function (data) {
+        console.log('test');
         saveCfg(data.cfg, data.data);
     });
 });
