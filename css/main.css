@@ -245,14 +245,15 @@ img { vertical-align: middle; }
   display: inline-block;
   padding: 5px 20px;
   border-radius: 3px;
-  box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, .25);
-  -moz-box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, .25);
-  -webkit-box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, .25);
+  -moz-box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .25);
+  -webkit-box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .25);
+  box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .25);
   color: #fff;
   text-decoration:none;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, .25);
   /*font-family: 'Raleway', sans-serif;*/
   font-weight: bold;
+  margin: 0 5px;
 
   transition: background 1s;
   -moz-transition: background 1s; /* Firefox 4 */
@@ -260,14 +261,13 @@ img { vertical-align: middle; }
   -o-transition: background 1s; /* Opera */
 }
 .minbtn:active {
-  box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .25);
-  -moz-box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .25);
-  -webkit-box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .25);
-  margin-top: 2px;
+  -moz-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, .25);
+  -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, .25);
+  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, .25);
 }
 
 .minbtn-red {
-  background-color: rgb(211,156,163);
+  background-color: rgb(220,60,60);
 }
 .minbtn-red:hover {
   background-color: rgb(203,138,147);
@@ -301,6 +301,13 @@ img { vertical-align: middle; }
   background-color: rgb(195,138,203);
 }
 
+.minbtn-grey {
+  background-color: rgb(100,100,100);
+}
+.minbtn-grey:hover {
+  background-color: rgb(150,150,150);
+}
+
 /* ==========================================================================
    Fonts
    ========================================================================== */
@@ -330,26 +337,6 @@ img { vertical-align: middle; }
 /* ==========================================================================
    Helper classes
    ========================================================================== */
-
-/*
- * Image replacement
- */
-
-.ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
-    /* IE 6/7 fallback */
-    *text-indent: -9999px;
-}
-
-.ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 150%;
-}
-
 
 .hidden {
     display: none !important;
@@ -450,7 +437,7 @@ img { vertical-align: middle; }
   background-image: none;
   outline: 0;
   -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 

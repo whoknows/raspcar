@@ -97,9 +97,10 @@
     }
 
     #button-container {
-        margin:10px auto;
+        margin:auto;
+        margin-top: 20px;
         text-align:center;
-        width:200px;
+        width:250px;
     }
 </style>
 <script>
@@ -142,7 +143,7 @@
     });
 
     $('#save-settings').click(function(){
-        socket.emit('saveCfg', {cfg:'app_conf.json', data:appCfg});
+        $.post('conf/fm.php', {conf:'app_conf.json', data:JSON.stringify(appCfg)},function(){alert('Conf saved.')});
     });
 </script>
 <div class="template-container template-settings">
@@ -219,7 +220,7 @@
     </div>
 
     <div id="button-container">
-        <span class="minbtn minbtn-green" id="save-settings">Save</span>
-        <span class="minbtn minbtn-red" id="cancel-settings">Cancel</span>
+        <span class="minbtn minbtn-grey" id="save-settings"><i class="icon-save"></i>&nbsp;&nbsp;Save</span>
+        <span class="minbtn minbtn-red" id="cancel-settings"><i class="icon-remove"></i>&nbsp;Cancel</span>
     </div>
 </div>
