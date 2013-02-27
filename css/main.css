@@ -13,7 +13,8 @@ textarea {
 body {
     background-color: #f4f4f4;
     color: #FFF;
-	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-family: ColabLig!important;
+	/*font-family: 'Open Sans', Arial, Helvetica, sans-serif;*/
 	font-size: 16px;
 	line-height: 1.5em;
     user-select:none;
@@ -22,7 +23,7 @@ body {
 a { text-decoration: none; }
 
 h1 { font-size: 1em; }
-h2 { font-size: 0.9em; color:#555; }
+h2 { font-size: 0.9em; }
 
 h1, p { margin-bottom: 10px; }
 strong { font-weight: bold; }
@@ -233,6 +234,80 @@ img { vertical-align: middle; }
     width: 130px;
 }
 
+
+
+/* ==========================================================================
+   Minimal Button
+   ========================================================================== */
+
+.minbtn {
+  cursor:pointer;
+  display: inline-block;
+  padding: 5px 20px;
+  border-radius: 3px;
+  -moz-box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .25);
+  -webkit-box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .25);
+  box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, .25);
+  color: #fff;
+  text-decoration:none;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, .25);
+  /*font-family: 'Raleway', sans-serif;*/
+  font-weight: bold;
+  margin: 0 5px;
+
+  transition: background 1s;
+  -moz-transition: background 1s; /* Firefox 4 */
+  -webkit-transition: background .1s; /* Safari and Chrome */
+  -o-transition: background 1s; /* Opera */
+}
+.minbtn:active {
+  -moz-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, .25);
+  -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, .25);
+  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, .25);
+}
+
+.minbtn-red {
+  background-color: rgb(220,60,60);
+}
+.minbtn-red:hover {
+  background-color: rgb(203,138,147);
+}
+
+.minbtn-green {
+  background-color: rgb(163,211,156);
+}
+.minbtn-green:hover {
+  background-color: rgb(147,203,138);
+}
+
+.minbtn-yellow {
+  background-color: rgb(211,204,156);
+}
+.minbtn-yellow:hover {
+  background-color: rgb(203,195,138);
+}
+
+.minbtn-purple {
+  background-color: rgb(156,163,211);
+}
+.minbtn-purple:hover {
+  background-color: rgb(138,147,203);
+}
+
+.minbtn-pink {
+  background-color: rgb(204,156,211);
+}
+.minbtn-pink:hover {
+  background-color: rgb(195,138,203);
+}
+
+.minbtn-grey {
+  background-color: rgb(100,100,100);
+}
+.minbtn-grey:hover {
+  background-color: rgb(150,150,150);
+}
+
 /* ==========================================================================
    Fonts
    ========================================================================== */
@@ -251,33 +326,17 @@ img { vertical-align: middle; }
 }
 
 @font-face {
-    font-family: 'Code Light';
-	src: url('fonts/CODE%20Light.otf');
+    font-family: 'ColabReg';
+	src: url('fonts/ColabReg.otf');
+}
+@font-face {
+    font-family: 'ColabLig';
+    src: url('fonts/ColabLig.otf');
 }
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
-
-/*
- * Image replacement
- */
-
-.ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
-    /* IE 6/7 fallback */
-    *text-indent: -9999px;
-}
-
-.ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 150%;
-}
-
 
 .hidden {
     display: none !important;
@@ -378,7 +437,7 @@ img { vertical-align: middle; }
   background-image: none;
   outline: 0;
   -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-     -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 

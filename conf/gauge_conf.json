@@ -5,9 +5,9 @@
         "min": 0,
         "max": 200,
         "title": "Speed",
-        "titleFontColor": "#898989",
+        "titleFontColor": "#232323",
         "valueFontColor": "#232323",
-        "labelFontColor": "#898989"
+        "labelFontColor": "#232323"
     },
     "rpmGauge" : {
         "id": "rpmGauge",
@@ -15,9 +15,9 @@
         "min": 0,
         "max": 6000,
         "title": "RPM",
-        "titleFontColor": "#898989",
+        "titleFontColor": "#232323",
         "valueFontColor": "#232323",
-        "labelFontColor": "#898989"
+        "labelFontColor": "#232323"
     },
     "tmpGauge" : {
         "id": "tmpGauge",
@@ -25,8 +25,8 @@
         "min": 0,
         "max": 180,
         "title": "Temp",
-        "titleFontColor": "#898989",
+        "titleFontColor": "#232323",
         "valueFontColor": "#232323",
-        "labelFontColor": "#898989"
+        "labelFontColor": "#232323"
     }
 }
