@@ -43,12 +43,6 @@ img { vertical-align: middle; }
    Author's custom styles
    ========================================================================== */
 
-.night-mode {
-    background-color: #5a5656;
-    border-color:#f4f4f4;
-    color: #f4f4f4;
-}
-
 #body-container {
 	height: 480px;
 	margin: auto;

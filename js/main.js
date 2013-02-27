@@ -27,12 +27,6 @@ $(document).ready(function(){
         loadTemplate('settings.html', '#app1', null);
     });
 
-    /*
-    $('#day-night').click(function(){
-        //TODO
-    });
-    */
-
     $(".app-fullscreen").click(function(){
 		var container = $(this).parent();
         var appX = container.data('parent-app');

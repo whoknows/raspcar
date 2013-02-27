@@ -104,10 +104,16 @@
     }
 </style>
 <script>
+    var saved = true;
+
     $('.size-demo .right').css('background-color', appCfg.app2.color);
     $('.size-demo .left' ).css('background-color', appCfg.app1.color);
 
+    $('#left-param').find('.app-selector[data-app='+appCfg.app1.app[0].name+']').addClass('app-selected');
+    $('#right-param').find('.app-selector[data-app='+appCfg.app2.app[0].name+']').addClass('app-selected');
+
     $('.size-demo').click(function(){
+        saved = false;
         var _this = $(this);
         $('.size-selected').removeClass('size-selected');
         _this.addClass('size-selected');
@@ -117,15 +123,19 @@
     });
 
     $('.app-selector').click(function(){
+        saved = false;
+
         $(this).parent().children('.app-selected').removeClass('app-selected');
         $(this).addClass('app-selected');
 
         var curApp = $(this).parents('.app-param').data('app');
-        appCfg[curApp].app.name = $(this).data('app');
-        appCfg[curApp].app.callback = $(this).data('callback');
+        appCfg[curApp].app[0].name = $(this).data('app');
+        appCfg[curApp].app[0].callback = $(this).data('callback');
     });
 
     $('.color-picker').click(function(){
+        saved = false;
+
         $(this).parent().children('.color-selected').removeClass('color-selected');
         $(this).addClass('color-selected');
 
@@ -143,11 +153,26 @@
     });
 
     $('#save-settings').click(function(){
+        saved = true;
         $.post('conf/fm.php', {conf:'app_conf.json', data:JSON.stringify(appCfg)},function(){alert('Conf saved.')});
     });
 
     $('#cancel-settings').click(function(){
-        $.ajax({dataType:"json",url:'conf/app_conf.json',async:false,success:function(data){ appCfg=data }});
+        saved = true;
+        $.ajax({dataType:"json",url:'conf/app_conf.json',async:false,success:function(data){
+            appCfg=data;
+            $('#home').click();
+        }});
+    });
+
+    $('#home').unbind('click');
+    $('#home').click(function(){
+        if(!saved){
+            $('#cancel-settings').click();
+            alert('Attention, vous n\'avez pas sauvegardé vos modifications.');
+        } else {
+            loadHome();
+        }
     });
 </script>
 <div class="template-container template-settings">
@@ -157,7 +182,7 @@
             <tr>
                 <td class="table-title"><h3>App</h3></td>
                 <td>
-                    <span class="app-selector app-selected" data-app="gauge" data-callback="gaugesInit"><i class="icon-dashboard"></i></span>
+                    <span class="app-selector" data-app="gauge" data-callback="gaugesInit"><i class="icon-dashboard"></i></span>
                     <span class="app-selector" data-app="player" data-callback="null"><i class="icon-play"></i></span>
                 </td>
             </tr>
@@ -182,7 +207,7 @@
                 <td class="table-title"><h3>App</h3></td>
                 <td>
                     <span class="app-selector" data-app="gauge" data-callback="gaugesInit"><i class="icon-dashboard"></i></span>
-                    <span class="app-selector app-selected" data-app="player" data-callback="null"><i class="icon-play"></i></span>
+                    <span class="app-selector" data-app="player" data-callback="null"><i class="icon-play"></i></span>
                 </td>
             </tr>
             <tr>
