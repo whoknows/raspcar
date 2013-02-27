@@ -56,6 +56,8 @@ $(document).ready(function(){
 });
 
 function loadHome(){
+    $('#app1 > .resize-container').removeClass('hidden');
+
     // App1 init
     $('#app1').css({
         'background-color': appCfg.app1.color,
