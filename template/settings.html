@@ -145,6 +145,10 @@
     $('#save-settings').click(function(){
         $.post('conf/fm.php', {conf:'app_conf.json', data:JSON.stringify(appCfg)},function(){alert('Conf saved.')});
     });
+
+    $('#cancel-settings').click(function(){
+        $.ajax({dataType:"json",url:'conf/app_conf.json',async:false,success:function(data){ appCfg=data }});
+    });
 </script>
 <div class="template-container template-settings">
     <div id="left-param" class="app-param" data-app="app1">

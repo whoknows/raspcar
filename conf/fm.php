@@ -9,6 +9,7 @@ function save_conf($conf, $data){
     if($handle){
         fwrite($handle, $data);
         fclose($handle);
+        echo "File succesfully writen.";
     } else {
         echo "Cant open file.";
     }
