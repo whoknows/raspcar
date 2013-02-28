@@ -37,6 +37,8 @@
 		$('#save-param').click(function(){
 			$('#dialog-box').addClass('hidden');
 			$('#modal').addClass('hidden');
+
+			gaugesCfg[_gauge.attr('id')].size = _gauge.attr('class').split('-')[0];
 			$.post('conf/fm.php', {conf:'gauge_conf.json', data:JSON.stringify(gaugesCfg)},function(){alert('Conf saved.'); $('#home').click(); });
 		});
 
@@ -51,7 +53,6 @@
 
 	function gaugesInit(){
 		$.each(gaugesCfg, function(k,v){
-			v.cfg = v.cfg[0];
 			$('#gaugeContainer').append('<div id="'+v.cfg.id+'" class="'+v.size+'-gauge gauge"></div>')
 			gauges[k] = new JustGage(v.cfg);
 		});
