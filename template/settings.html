@@ -114,6 +114,8 @@
     $('#left-param').find('.app-selector[data-app='+appCfg.app1.app[0].name+']').addClass('app-selected');
     $('#right-param').find('.app-selector[data-app='+appCfg.app2.app[0].name+']').addClass('app-selected');
 
+    $('.size-demo[data-app1-size='+appCfg.app1.size+']').addClass('size-selected');
+
     $('.size-demo').click(function(){
         saved = false;
         var _this = $(this);
@@ -161,7 +163,7 @@
 
     $('#save-settings').click(function(){
         saved = true;
-        $.post('conf/fm.php', {conf:'app_conf.json', data:JSON.stringify(appCfg)},function(){alert('Conf saved.')});
+        $.post('conf/fm.php', {conf:'app_conf.json', data:JSON.stringify(appCfg)},function(){alert('Conf saved.'); $('#home').click(); });
     });
 
     $('#cancel-settings').click(function(){
@@ -229,7 +231,7 @@
 
     <h2>Default display mode</h2>
     <div id="size-container">
-        <span class="size-demo size-selected" data-app1-size="400px" data-app2-size="400px">
+        <span class="size-demo" data-app1-size="400px" data-app2-size="400px">
             <span class="width-50 left">50</span>
             <span class="width-50 right">50</span>
         </span>
