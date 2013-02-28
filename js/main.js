@@ -63,6 +63,8 @@ function loadHome(){
 
         var app1 = appCfg.app1.app[0];
         loadTemplate(app1.name+'.html', '#app1', app1.callback);
+    } else {
+        $('#app1').addClass('hidden');
     }
 
     if(appCfg.app2.size !== 0){
@@ -74,6 +76,8 @@ function loadHome(){
 
         var app2 = appCfg.app2.app[0];
         loadTemplate(app2.name+'.html', '#app2', app2.callback);
+    } else {
+        $('#app2').addClass('hidden');
     }
 }
 
