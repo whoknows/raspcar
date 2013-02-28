@@ -2,19 +2,7 @@ var gauges = {};
 var gaugesCfg = {};
 var appCfg = {};
 
-$.ajax({
-    dataType: "json",
-    url: 'conf/gauge_conf.json',
-    async:false,
-    success: function(data){ gaugesCfg = data }
-});
-
-$.ajax({
-    dataType: "json",
-    url: 'conf/app_conf.json',
-    async:false,
-    success: function(data){ appCfg = data }
-});
+resetAppConf();
 
 $(document).ready(function(){
     loadHome();
@@ -58,6 +46,10 @@ $(document).ready(function(){
 function loadHome(){
     $('#app1 > .resize-container').removeClass('hidden');
 
+    if(appCfg.app1.size != appCfg.app2.size){
+        $('.app-toogle').addClass('hidden');
+    }
+
     // App1 init
     $('#app1').css({
         'background-color': appCfg.app1.color,
@@ -97,4 +89,25 @@ function gaugesInit(){
 function myTimer() {
 	var d = new Date();
 	document.getElementById("clock").innerHTML = d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '')+d.getMinutes();
+}
+
+function resetGaugeConf(){
+    $.ajax({
+        dataType: "json",
+        url: 'conf/gauge_conf.json',
+        async:false,
+        success: function(data){ gaugesCfg = data }
+    });
+}
+
+function resetAppConf(callback){
+    $.ajax({
+        dataType: "json",
+        url: 'conf/app_conf.json',
+        async:false,
+        success: function(data){
+            appCfg = data;
+            if(callback) callback();
+        }
+    });
 }

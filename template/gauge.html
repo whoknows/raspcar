@@ -2,12 +2,15 @@
     .gauge { display:inline-block; }
     .gauge:active { background-color: #DDD; }
 
-    .small-gauge  { height:  60px; width: 100px; }
-    .medium-gauge { height: 120px; width: 200px; }
-    .big-gauge    { height: 240px; width: 400px; }
+    .small-gauge  { height:  54px; width: 100px; }
+    .medium-gauge { height: 107px; width: 200px; }
+    .big-gauge    { height: 215px; width: 400px; }
 </style>
 <script>
-    $(".gauge").hammer({}).bind("hold", function(/*e*/) {
+    resetGaugeConf();
+    var posSaved = true;
+
+    $('.gauge').hammer({hold_timeout: 1000}).bind("hold", function(/*e*/) {
         var _this = $(this);
         $('#dialog-box').removeClass('hidden');
         $('#modal').removeClass('hidden');
@@ -29,6 +32,13 @@
 
         bindButtons(_this);
     });
+
+    $('#gaugeContainer').sortable({
+        containment:"parent",
+        scroll:false,
+        start:function(){
+            posSaved = false;
+        }});
 
     function bindButtons(_gauge){
         $('#discard-param').unbind('click');

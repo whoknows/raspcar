@@ -166,16 +166,12 @@
 
     $('#cancel-settings').click(function(){
         saved = true;
-        $.ajax({dataType:"json",url:'conf/app_conf.json',async:false,success:function(data){
-            appCfg=data;
-            $('#home').click();
-        }});
+        resetAppConf(function(){$('#home').click();});
     });
 
     $('#home').unbind('click');
     $('#home').click(function(){
         if(!saved){
-            $('#cancel-settings').click();
             alert('Attention, vous n\'avez pas sauvegardé vos modifications.');
         } else {
             loadHome();
