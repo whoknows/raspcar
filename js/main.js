@@ -24,7 +24,9 @@ $(document).ready(function(){
 		$('#'+appX).toggleClass('fullscreenApp');
 		$('#'+appY).toggleClass('hidden').removeClass('fullscreenApp');
 
-		container.children(".app-toggle").toggleClass('hidden');
+		if(appCfg.app1.size == appCfg.app2.size){
+            container.children(".app-toggle").toggleClass('hidden');
+        }
 	});
 
 	$(".app-toggle").click(function(){
