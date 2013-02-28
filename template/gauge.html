@@ -1,88 +1,101 @@
 <style>
-    .gauge { display:inline-block; }
-    .gauge:active { background-color: #DDD; }
+	.gauge { display:inline-block; }
+	.gauge:active { background-color: #DDD; }
 
-    .small-gauge  { height:  54px; width: 100px; }
-    .medium-gauge { height: 107px; width: 200px; }
-    .big-gauge    { height: 215px; width: 400px; }
+	.small-gauge  { height:  54px; width: 100px; }
+	.medium-gauge { height: 107px; width: 200px; }
+	.big-gauge    { height: 215px; width: 400px; }
 </style>
 <script>
-    resetGaugeConf();
-    var posSaved = true;
+	resetGaugeConf();
+	var posSaved = true;
+	var oldClass = "";
 
-    $('.gauge').hammer({hold_timeout: 1000}).bind("hold", function(/*e*/) {
-        var _this = $(this);
-        $('#dialog-box').removeClass('hidden');
-        $('#modal').removeClass('hidden');
+	$('#gaugeContainer').sortable({
+		containment:"parent",
+		scroll:false,
+		start:function(){
+			posSaved = false;
+		}
+	});
 
-        $('#modal').unbind('click');
-        $('#modal').click(function(){
-            $('#modal').addClass('hidden');
-            $('#dialog-box').addClass('hidden');
-        });
+	function bindButtons(_gauge){
+		$('#discard-param').unbind('click');
+		$('#save-param').unbind('click');
+		$('#delete-param').unbind('click');
 
-        $('.set-size').unbind('click');
-        $('.set-size').click(function(){
-            _this.removeClass('small-gauge medium-gauge big-gauge');
-            _this.addClass($(this).data('size')+'-gauge');
-            _this.children('svg').remove();
+		$('#discard-param').click(function(){
+			$('#dialog-box').addClass('hidden');
+			$('#modal').addClass('hidden');
 
-            gauges[_this.attr('id')] = new JustGage(gaugesCfg[_this.attr('id')]);
-        });
+			_gauge.attr('class', oldClass);
+			_gauge.children('svg').remove();
 
-        bindButtons(_this);
-    });
+			gauges[_gauge.attr('id')] = new JustGage(gaugesCfg[_gauge.attr('id')].cfg);
+		});
 
-    $('#gaugeContainer').sortable({
-        containment:"parent",
-        scroll:false,
-        start:function(){
-            posSaved = false;
-        }});
+		$('#save-param').click(function(){
+			$('#dialog-box').addClass('hidden');
+			$('#modal').addClass('hidden');
+			$.post('conf/fm.php', {conf:'gauge_conf.json', data:JSON.stringify(gaugesCfg)},function(){alert('Conf saved.'); $('#home').click(); });
+		});
 
-    function bindButtons(_gauge){
-        $('#discard-param').unbind('click');
-        $('#save-param').unbind('click');
-        $('#delete-param').unbind('click');
+		$('#delete-param').click(function(){
+			if(confirm('Do you realy want to delete this gauge ?')){
+				_gauge.remove();
+			}
+			$('#dialog-box').addClass('hidden');
+			$('#modal').addClass('hidden');
+		});
+	}
 
-        $('#discard-param').click(function(){
-            $('#dialog-box').addClass('hidden');
-            $('#modal').addClass('hidden');
-        });
+	function gaugesInit(){
+		$.each(gaugesCfg, function(k,v){
+			v.cfg = v.cfg[0];
+			$('#gaugeContainer').append('<div id="'+v.cfg.id+'" class="'+v.size+'-gauge gauge"></div>')
+			gauges[k] = new JustGage(v.cfg);
+		});
 
-        $('#save-param').click(function(){
-            $('#dialog-box').addClass('hidden');
-            $('#modal').addClass('hidden');
-        });
+		$('.gauge').hammer({hold_timeout: 1000}).bind("hold", function(/*e*/) {
+			var _this = $(this);
+			$('#dialog-box').removeClass('hidden');
+			$('#modal').removeClass('hidden');
 
-        $('#delete-param').click(function(){
-            if(confirm('Do you realy want to delete this gauge ?')){
-                _gauge.remove();
-            }
-            $('#dialog-box').addClass('hidden');
-            $('#modal').addClass('hidden');
-        });
-    }
+			$('#modal').unbind('click');
+			$('#modal').click(function(){
+				$('#modal').addClass('hidden');
+				$('#dialog-box').addClass('hidden');
+			});
+
+			$('.set-size').unbind('click');
+			$('.set-size').click(function(){
+				oldClass = _this.attr('class');
+				_this.removeClass('small-gauge medium-gauge big-gauge');
+				_this.addClass($(this).data('size')+'-gauge');
+				_this.children('svg').remove();
+
+				gauges[_this.attr('id')] = new JustGage(gaugesCfg[_this.attr('id')].cfg);
+			});
+
+			bindButtons(_this);
+		});
+	}
 </script>
-<div id="gaugeContainer" class="template-container">
-	<div id="speedGauge" class="big-gauge gauge"></div><!--
- --><div id="rpmGauge" class="medium-gauge gauge"></div><!--
- --><div id="tmpGauge" class="medium-gauge gauge"></div>
-</div>
+<div id="gaugeContainer" class="template-container"></div>
 
 <div id="dialog-box" class="hidden">
-    <div id="dialog-content">
-        <div id="dialog-info"><span><i class="icon-dashboard"></i></span></div><!--
-        --><div id="real-content">
-                <h1>Size :</h1>
-                <button class="set-size btn" data-size="small">Small (1:4)</button>
-                <button class="set-size btn" data-size="medium">Medium (1:2)</button>
-                <button class="set-size btn" data-size="big">Big (1:1)</button>
-            </div>
-        </div>
-    <div id="validation-footer">
-        <button class="btn" id="discard-param"><i class="icon-remove"></i>&nbsp;Annuler</button>
-        <button class="btn btn-success" id="save-param"><i class="icon-save"></i>&nbsp;Enregistrer</button>
-        <button class="btn btn-danger" id="delete-param"><i class="icon-trash"></i>&nbsp;Supprimer</button>
-    </div>
+	<div id="dialog-content">
+		<div id="dialog-info"><span><i class="icon-dashboard"></i></span></div><!--
+		--><div id="real-content">
+				<h1>Size :</h1>
+				<button class="set-size btn" data-size="small">Small (1:4)</button>
+				<button class="set-size btn" data-size="medium">Medium (1:2)</button>
+				<button class="set-size btn" data-size="big">Big (1:1)</button>
+			</div>
+		</div>
+	<div id="validation-footer">
+		<button class="btn" id="discard-param"><i class="icon-remove"></i>&nbsp;Annuler</button>
+		<button class="btn btn-success" id="save-param"><i class="icon-save"></i>&nbsp;Enregistrer</button>
+		<button class="btn btn-danger" id="delete-param"><i class="icon-trash"></i>&nbsp;Supprimer</button>
+	</div>
 </div>

@@ -1,32 +1,47 @@
 {
-    "speedGauge" : {
-        "id": "speedGauge",
-        "value": 66,
-        "min": 0,
-        "max": 200,
-        "title": "Speed",
-        "titleFontColor": "#232323",
-        "valueFontColor": "#232323",
-        "labelFontColor": "#232323"
+    "speedGauge": {
+        "cfg": [
+            {
+                "id": "speedGauge",
+                "value": 66,
+                "min": 0,
+                "max": 200,
+                "title": "Speed",
+                "titleFontColor": "#232323",
+                "valueFontColor": "#232323",
+                "labelFontColor": "#232323"
+            }
+        ],
+        "size": "big"
     },
-    "rpmGauge" : {
-        "id": "rpmGauge",
-        "value": 2865,
-        "min": 0,
-        "max": 6000,
-        "title": "RPM",
-        "titleFontColor": "#232323",
-        "valueFontColor": "#232323",
-        "labelFontColor": "#232323"
+    "rpmGauge": {
+        "cfg": [
+            {
+                "id": "rpmGauge",
+                "value": 2865,
+                "min": 0,
+                "max": 6000,
+                "title": "RPM",
+                "titleFontColor": "#232323",
+                "valueFontColor": "#232323",
+                "labelFontColor": "#232323"
+            }
+        ],
+        "size": "medium"
     },
-    "tmpGauge" : {
-        "id": "tmpGauge",
-        "value": 135,
-        "min": 0,
-        "max": 180,
-        "title": "Temp",
-        "titleFontColor": "#232323",
-        "valueFontColor": "#232323",
-        "labelFontColor": "#232323"
+    "tmpGauge": {
+        "cfg": [
+            {
+                "id": "tmpGauge",
+                "value": 135,
+                "min": 0,
+                "max": 180,
+                "title": "Temp",
+                "titleFontColor": "#232323",
+                "valueFontColor": "#232323",
+                "labelFontColor": "#232323"
+            }
+        ],
+        "size": "medium"
     }
 }

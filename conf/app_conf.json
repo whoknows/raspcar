@@ -1,1 +1,1 @@
-{"app1": {"color": "#EBE7DE","size": "400px","app": [{"name": "gauge","callback": "gaugesInit"}]},"app2": {"color": "#E76E66","size": "400px","app": [{"name": "player","callback": "null"}]}}
+{"app1":{"color":"#EBE7DE","size":"400px","app":[{"name":"gauge","callback":"gaugesInit"}]},"app2":{"color":"#1B7E5A","size":"400px","app":[{"name":"player","callback":"null"}]}}
