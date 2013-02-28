@@ -12,6 +12,7 @@ $(document).ready(function(){
         if(!$('#app1').hasClass('fullscreenApp')){
             $('#app1').children('.resize-container').children('span').click();
         }
+        $('#app1').removeClass('hidden');
         loadTemplate('settings.html', '#app1', null);
     });
 
