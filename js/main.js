@@ -50,23 +50,31 @@ function loadHome(){
         $('.app-toogle').addClass('hidden');
     }
 
-    // App1 init
-    $('#app1').css({
-        'background-color': appCfg.app1.color,
-        'width' : appCfg.app1.size
-    }).removeClass('fullscreenApp hidden');
+    if(appCfg.app1.size === 0 || appCfg.app2.size === 0){
+        $('.resize-container').addClass('hidden');
+    }
 
-    var app1 = appCfg.app1.app[0];
-    loadTemplate(app1.name+'.html', '#app1', app1.callback);
+    if(appCfg.app1.size !== 0){
+        // App1 init
+        $('#app1').css({
+            'background-color': appCfg.app1.color,
+            'width' : appCfg.app1.size
+        }).removeClass('fullscreenApp hidden');
 
-    // App2 init
-    $('#app2').css({
-        'background-color': appCfg.app2.color,
-        'width' : appCfg.app2.size
-    }).removeClass('fullscreenApp hidden');
+        var app1 = appCfg.app1.app[0];
+        loadTemplate(app1.name+'.html', '#app1', app1.callback);
+    }
 
-    var app2 = appCfg.app2.app[0];
-    loadTemplate(app2.name+'.html', '#app2', app2.callback);
+    if(appCfg.app2.size !== 0){
+        // App2 init
+        $('#app2').css({
+            'background-color': appCfg.app2.color,
+            'width' : appCfg.app2.size
+        }).removeClass('fullscreenApp hidden');
+
+        var app2 = appCfg.app2.app[0];
+        loadTemplate(app2.name+'.html', '#app2', app2.callback);
+    }
 }
 
 function loadTemplate(template, receiver, callback) {
