@@ -47,7 +47,7 @@ function loadHome(){
     $('#app1 > .resize-container').removeClass('hidden');
 
     if(appCfg.app1.size != appCfg.app2.size){
-        $('.app-toogle').addClass('hidden');
+        $('.app-toggle').addClass('hidden');
     }
 
     if(appCfg.app1.size === 0 || appCfg.app2.size === 0){
