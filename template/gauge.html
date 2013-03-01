@@ -10,23 +10,28 @@
     /*
      * RAF :
      *       - Ajout de gauge
-     *       - Sauvegarde de la position des gauges
+     *       - Sauvegarde de la position des gauges -> doing
      *       - Sauvegarde de la suppression d'une gauge
      */
 
-    resetGaugeConf();
-
     var gauges = {};
     var gaugesCfg = {};
-	var posSaved = true;
 	var oldClass = "";
+
+    resetGaugeConf();
 
 	$('#gaugeContainer').sortable({
 		containment:"parent",
 		scroll:false,
-		start:function(){
-			posSaved = false;
-		}
+        stop:function(){
+            var gaugesCfgTmp = {};
+            $('.gauge').each(function(){
+                gaugesCfgTmp[$(this).attr('id')] = gaugesCfg[$(this).attr('id')];
+            });
+            gaugesCfg = gaugesCfgTmp;
+            gaugesCfgTmp = null;
+            $.post('conf/fm.php', {conf:'gauge_conf.json', data:JSON.stringify(gaugesCfg)});
+        }
 	});
 
 	function bindButtons(_gauge) {
@@ -38,10 +43,12 @@
 			$('#dialog-box').addClass('hidden');
 			$('#modal').addClass('hidden');
 
-			_gauge.attr('class', oldClass);
-			_gauge.children('svg').remove();
+            if(oldClass !== "" && oldClass != _gauge.attr('class')){
+                _gauge.attr('class', oldClass);
+                _gauge.children('svg').remove();
 
-			gauges[_gauge.attr('id')] = new JustGage(gaugesCfg[_gauge.attr('id')].cfg);
+                gauges[_gauge.attr('id')] = new JustGage(gaugesCfg[_gauge.attr('id')].cfg);
+            }
 		});
 
 		$('#save-param').click(function(){
@@ -62,8 +69,8 @@
 	}
 
 	function gaugesInit() {
-		$.each(gaugesCfg, function(k,v){
-			$('#gaugeContainer').append('<div id="'+v.cfg.id+'" class="'+v.size+'-gauge gauge"></div>')
+        $.each(gaugesCfg, function(k,v){
+			$('#gaugeContainer').append('<div id="'+v.cfg.id+'" class="'+v.size+'-gauge gauge"></div>');
 			gauges[k] = new JustGage(v.cfg);
 		});
 
