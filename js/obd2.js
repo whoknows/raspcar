@@ -1,14 +1,15 @@
 /*
  * @author Guillaume Coste <guillaume.coste (at) gmail.com>
- * @lastModified 19/02/2013
+ * @lastModified 01/03/2013
  */
 
-if(typeof util != "undefined"){
-    var util = require('util');
+if(typeof exec != "undefined"){
+    var exec = require('exec');
 }
 
 function obdCommunicator() {
 	this.ConnectionStatus = "Not connected";
+    this.child;
 	//this.something;
 
 	// Déclaration des fonctions
@@ -21,7 +22,15 @@ function obdCommunicator() {
 		 */
 		obdCommunicator.prototype.Connect = function(Interface) {
 			// connection to the elm327
-			util.puts("/dev/" + Interface);
+
+            this.child = exec("service bluetooth status", function (error, stdout, stderr) {
+                if(stdout);
+            });
+
+            this.child = exec("/dev/" + Interface, function (error, stdout, stderr) {
+                if(stdout);
+            });
+
             this.ConnectionStatus = "Connected";
 			return true;
 		};

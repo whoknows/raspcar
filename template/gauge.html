@@ -7,7 +7,17 @@
 	.big-gauge    { height: 215px; width: 400px; }
 </style>
 <script>
-	resetGaugeConf();
+    /*
+     * RAF :
+     *       - Ajout de gauge
+     *       - Sauvegarde de la position des gauges
+     *       - Sauvegarde de la suppression d'une gauge
+     */
+
+    resetGaugeConf();
+
+    var gauges = {};
+    var gaugesCfg = {};
 	var posSaved = true;
 	var oldClass = "";
 
@@ -19,7 +29,7 @@
 		}
 	});
 
-	function bindButtons(_gauge){
+	function bindButtons(_gauge) {
 		$('#discard-param').unbind('click');
 		$('#save-param').unbind('click');
 		$('#delete-param').unbind('click');
@@ -51,7 +61,7 @@
 		});
 	}
 
-	function gaugesInit(){
+	function gaugesInit() {
 		$.each(gaugesCfg, function(k,v){
 			$('#gaugeContainer').append('<div id="'+v.cfg.id+'" class="'+v.size+'-gauge gauge"></div>')
 			gauges[k] = new JustGage(v.cfg);
@@ -81,6 +91,15 @@
 			bindButtons(_this);
 		});
 	}
+
+    function resetGaugeConf() {
+        $.ajax({
+            dataType: "json",
+            url: 'conf/gauge_conf.json',
+            async:false,
+            success: function(data){ gaugesCfg = data }
+        });
+    }
 </script>
 <div id="gaugeContainer" class="template-container"></div>
 

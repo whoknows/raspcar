@@ -1,5 +1,3 @@
-var gauges = {};
-var gaugesCfg = {};
 var appCfg = {};
 
 resetAppConf();
@@ -98,15 +96,6 @@ function loadTemplate(template, receiver, callback) {
 function myTimer() {
 	var d = new Date();
 	document.getElementById("clock").innerHTML = d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '')+d.getMinutes();
-}
-
-function resetGaugeConf(){
-	$.ajax({
-		dataType: "json",
-		url: 'conf/gauge_conf.json',
-		async:false,
-		success: function(data){ gaugesCfg = data }
-	});
 }
 
 function resetAppConf(callback){
