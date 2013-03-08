@@ -16,15 +16,15 @@
 		<br /><!-- a enlever en "prod" -->
 		<div id="body-container">
 			<div id="menu-top">
-                <div class="menu-left">
-                    <span class="menu-items" id="home"><i class="icon-home"></i></span>
-                </div><!--
-             --><div class="menu-middle">
-                    <span id="clock"></span><!-- Setting - show date / show time - 24h/12h -->
-                </div><!--
-             --><div class="menu-right">
-                    <span class="menu-items" id="settings"><i class="icon-cog"></i></span>
-                </div>
+				<div class="menu-left">
+					<span class="menu-items" id="home"><i class="icon-home"></i></span>
+				</div><!--
+			 --><div class="menu-middle">
+					<span id="clock"></span><!-- Setting - show date / show time - 24h/12h -->
+				</div><!--
+			 --><div class="menu-right">
+					<span class="menu-items" id="settings"><i class="icon-cog"></i></span>
+				</div>
 			</div>
 			<div id="main-ui">
 				<div id="app1" class="mainApp">
@@ -42,26 +42,23 @@
 			</div>
 		</div>
 
-        <div id="divdemerde" class="hidden"></div>
-        <div id="modal" class="hidden"></div>
+		<div id="divdemerde" class="hidden"></div>
+		<div id="modal" class="hidden"></div>
 
 		<script src="js/vendor/jquery-1.9.1.js"></script>
 		<script src="js/vendor/jquery-ui-1.10.1.min.js"></script>
 		<script src="js/vendor/raphael.2.1.0.min.js"></script>
 		<script src="js/vendor/justgage.1.0.1.min.js"></script>
-        <script src="js/vendor/hammer.js"></script>
-        <script src="js/vendor/jquery.specialevent.hammer.js"></script>
-        <script src="js/vendor/jquery.hammer.js"></script>
+		<script src="js/vendor/hammer.js"></script>
+		<script src="js/vendor/jquery.specialevent.hammer.js"></script>
+		<script src="js/vendor/jquery.hammer.js"></script>
 		<script src="js/main.js"></script>
 
-        <!--<script src="socket.io/socket.io.js"></script>-->
-        <script>
-            /*var socket = io.connect('http://localhost:8080');
-            //var socket = io.connect('https://c9.io/whoknows/raspcar/workspace/:8080');
-            socket.on('news', function (data) {
-                console.log(data);
-                socket.emit('getCarInfo', { my: 'data' });
-            });*/
-        </script>
+		<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+		<script>
+			var socket = io.connect('http://localhost:8080');
+			//var socket = io.connect('https://c9.io/whoknows/raspcar/workspace/:8080');
+			socket.on('news', function (data) { console.log(data); });
+		</script>
 	</body>
 </html>

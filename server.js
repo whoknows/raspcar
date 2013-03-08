@@ -7,7 +7,8 @@ io.sockets.on('connection', function (socket) {
     socket.on('getCarInfo', function (data) {
         setInterval(function(){
             //obd2.getGaugesData();
-            socket.emit('carinfo', { data : 'car info' });
+            var carInfo = {'speedGauge':Math.floor(Math.random()*200)}
+            socket.emit('carinfo', { data : carInfo });
         },1000);
     });
 });
